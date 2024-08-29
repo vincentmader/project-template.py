@@ -1,5 +1,10 @@
 run:
+#   Perform setup, if not already done.
 	[ -d .venv ] || make setup
-	cd ./bin && ./run.sh
+#   Execute main python entrypoint.
+	cd src && ../.venv/bin/python3 main.py
 setup:
-	cd ./bin && ./setup.sh
+#   Create new virtual environment for python, if not already done.
+	[ -d .venv ] || python3 -m virtualenv .venv
+#   Install python dependencies.
+	.venv/bin/pip3 install -r requirements.txt
